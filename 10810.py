@@ -6,8 +6,10 @@ for _ in range(M):
     for n in range(i, j+1):
         basket[n] = k
 
-for i in range(1, N+1):
-    print(basket[i], end = ' ')
+print(basket)
+
+for m in range(1, N+1):
+    print(basket[m], end=' ')
 
 
 
