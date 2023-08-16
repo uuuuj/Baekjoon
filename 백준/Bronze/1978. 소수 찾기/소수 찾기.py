@@ -1,16 +1,17 @@
-N = int(input())
-lst = []
-num = list(map(int, input().split()))
-for i in range(N):
-    lst.append([])
-for i in range(0, N):
-    for j in range(1, num[i]+1):
-        if num[i] % j == 0:
-            lst[i].append(j)
+import sys
+N = int(sys.stdin.readline())
+num = list(map(int, sys.stdin.readline().split()))
+
 cnt = 0
-for i in range(N):
-    if len(lst[i]) == 2:
-        cnt += 1
-    else:
-        pass
+
+for i in num:
+    error = 0
+    if i > 1:
+
+        for j in range(2, i):
+            if i % j == 0:
+                error += 1
+        if error == 0:
+            cnt += 1
+
 print(cnt)
