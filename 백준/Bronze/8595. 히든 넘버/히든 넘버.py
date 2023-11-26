@@ -1,16 +1,16 @@
 N = int(input())
 text = input()
+
 sum_num = 0
-current_num = ''
+hidden_num = ''
 
-for char in text:
-    if char.isdigit():
-        current_num += char
-    elif current_num:
-        sum_num += int(current_num)
-        current_num = ''
-
-if current_num:
-    sum_num += int(current_num)
+for word in text:
+    if word.isdigit():
+        hidden_num += word
+    elif hidden_num:
+        sum_num += int(hidden_num)
+        hidden_num = ''
+if hidden_num:
+    sum_num += int(hidden_num)
 
 print(sum_num)
