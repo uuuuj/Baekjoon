@@ -1,31 +1,33 @@
 import sys
-#줄의 개수 N
+
 N = int(sys.stdin.readline())
-#N개의 수로 이루어진 수열
-A = list(map(int, sys.stdin.readline().split()))
-#N-1개의 수로 이루어진 연산자의 갯수. 차례대로 +, -, x, %
-num_op = list(map(int, sys.stdin.readline().split()))
+num = list(map(int, sys.stdin.readline().split()))
+op = list(map(int, sys.stdin.readline().split()))
 
-max_result = -1e9
-min_result = 1e9
-
-def dfs(depth, total, plus, minus, multi, divide):
-    global max_result, min_result
+maxi = -1e9
+mini = 1e9
+def dfs(depth, total, plus, minus, multi, div):
+    global maxi, mini
     if depth == N:
-        max_result = max(total, max_result)
-        min_result = min(total, min_result)
+        maxi = max(total, maxi)
+        mini = min(total, mini)
+        # print(f'depth : {depth}, max : {maxi}')
+        # print(f'depth : {depth}, min : {mini}')
+        # print('===============================')
         return
-    #인자가 0이 아닌 경우에만 실행된다.
     if plus:
-        dfs(depth + 1, total + A[depth], plus -1, minus, multi, divide)
+        # print(f'depth : {depth}')
+        dfs(depth+1, total + num[depth], plus -1, minus, multi, div)
     if minus:
-        dfs(depth + 1, total - A[depth], plus, minus - 1, multi, divide)
+        # print(f'depth : {depth}')
+        dfs(depth+1, total - num[depth], plus, minus-1, multi, div)
     if multi:
-        dfs(depth+1, total * A[depth], plus, minus, multi - 1, divide)
-    if divide:
-        dfs(depth+1, int(total / A[depth]), plus, minus, multi, divide -1)
+        # print(f'depth : {depth}')
+        dfs(depth+1, total * num[depth], plus, minus, multi-1, div)
+    if div:
+        # print(f'depth : {depth}')
+        dfs(depth+1, int(total / num[depth]), plus, minus, multi, div-1)
 
-dfs(1, A[0], num_op[0], num_op[1], num_op[2], num_op[3])
-
-print(max_result)
-print(min_result)
+dfs(1, num[0], op[0], op[1], op[2], op[3])
+print(maxi)
+print(mini)
