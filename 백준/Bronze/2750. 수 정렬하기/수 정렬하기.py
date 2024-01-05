@@ -1,16 +1,11 @@
 import sys
-from typing import MutableSequence
-def bubble_sort(n: MutableSequence) -> None:
-    for i in range(len(n)):
-        for j in range(len(n)-1, i, -1):
-            if n[j-1] > n[j]:
-                n[j-1], n[j] = n[j], n[j-1]
-num = []
+
 N = int(sys.stdin.readline())
-for i in range(N):
-    num.append(int(sys.stdin.readline()))
+numbers = []
+for _ in range(N):
+    number = int(sys.stdin.readline())
+    numbers.append(number)
+numbers = sorted(numbers)
 
-bubble_sort(num)
-
-for i in num:
-    print(i)
+for i in range(0, N):
+    print(numbers[i])
